@@ -1,0 +1,41 @@
+---
+title: "Developing Data Products - Week 2 Assignment"
+author: "Sofia Riccomagno"
+date: "29/05/2020"
+output: html_document
+---
+
+#Developing Data Products - Week 2 Assignment
+
+##Bath, United Kingdom
+```{r map, echo=FALSE, results='hide'}
+library(leaflet)
+my_map<-leaflet() %>%
+  addTiles()
+my_map
+```
+
+```{r coords, echo=FALSE, message=FALSE}
+bathLatLong<-data.frame(
+  names = c("Bath Abbey", "Roman Baths", "Bath Spa Railway Station", "Royal Crescent",
+            "The Circus", "Alexandra Park", "Royal Victoria Park", "Prior Park Landscape Garden"),
+  lat = c(51.381426,51.381018,51.377576,51.387245,51.385922,51.373607,51.387400,51.366811),
+  long = c(-2.358865,-2.359746,-2.356718,-2.368169,-2.364046,-2.359401,-2.374887,-2.344341)
+)
+
+bathSites<-c(
+  "<a href='https://www.bathabbey.org/'> Bath Abbey</a>",
+  "<a href='https://www.romanbaths.co.uk/'> Roman Baths</a>",
+  "<a href='https://www.gwr.com/plan-journey/stations-and-routes/bath-spa/'> Bath Spa Railway Station</a>",
+  "<a href='https://www.royalcrescent.co.uk/'> Royal Crescent</a>",
+  "<a href='https://visitbath.co.uk/listings/single/the-circus//'> The Circus</a>",
+  "<a href='https://www.alexandraparkbath.org/'> Alexandra Park</a>",
+  "<a href='https://visitbath.co.uk/listings/single/royal-victoria-park//'> Royal Victoria Park</a>",
+  "<a href='https://www.nationaltrust.org.uk/prior-park-landscape-garden/'> Prior Park Landscape Garden</a>"
+)
+
+bathLatLong %>%
+  leaflet() %>%
+  addTiles() %>%
+  addMarkers(popup = bathSites, clusterOptions = markerClusterOptions())
+```

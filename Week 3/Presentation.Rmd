@@ -1,0 +1,23 @@
+---
+title: "Week 3 Assignment"
+author: "Sofia Riccomagno"
+date: "02/06/2020"
+output: ioslides_presentation
+---
+
+##New COVID-19 positive cases in England  
+
+```{r,echo=FALSE, message=FALSE}
+library(plotly)
+data<- read.csv("coronavirus-cases_latest.csv")
+data.england<-subset(data, Area.name=="England")
+
+plot_ly(data.england, x=~Specimen.date, y=~Daily.lab.confirmed.cases, type="scatter", mode="line") %>%
+  layout(
+    title = "Daily lab confirmed COVID-19 positive cases",
+    xaxis = list(title="Date"),
+    yaxis = list(title="Number of Cases")
+  )
+```
+
+Dataset can be found [here](https://coronavirus.data.gov.uk).
